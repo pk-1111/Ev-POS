@@ -4,17 +4,9 @@ import Topbar from '../Topbar/Topbar';
 import { Link, router } from '@inertiajs/react';
 import '/public/Admin/css/sb-admin-2.min.css';
 
-const PaymentHistory = ({ paymentHistory,orderProductDetails}) => {
-    
+const PaymentHistory = ({ paymentHistory, orderProductDetails }) => {
 
-    // Helper to get status badge colors
-    const getStatusBadge = (status) => {
-        const s = status?.toLowerCase();
-        if (s === 'pending') return 'badge-warning';
-        if (s === 'completed' || s === 'success') return 'badge-success';
-        if (s === 'rejected' || s === 'cancelled') return 'badge-danger';
-        return 'badge-secondary';
-    };
+
 
     return (
         <div id="wrapper">
@@ -85,9 +77,9 @@ const PaymentHistory = ({ paymentHistory,orderProductDetails}) => {
                                                         </a>
                                                     </td>
                                                     <td className="text-left">
-                                                       <Link href={route('orderProductDetailsPage',{orderCode:item.order_code})}>
-                                                          <span className="d-block font-weight-bold text-dark">{item.order_code}</span>
-                                                       </Link> 
+                                                        <Link href={route('orderProductDetailsPage', { orderCode: item.order_code })}>
+                                                            <span className="d-block font-weight-bold text-dark">{item.order_code}</span>
+                                                        </Link>
                                                         <small className="text-primary font-weight-bold">{item.name}</small>
                                                     </td>
                                                     <td className="text-right font-weight-bold text-dark">
@@ -103,13 +95,13 @@ const PaymentHistory = ({ paymentHistory,orderProductDetails}) => {
                                                             <small className="text-muted">{item.address}</small>
                                                         </div>
                                                     </td>
-                                                     <td>
-                                                        <span className={`badge badge-pill ${getStatusBadge(item.order_status)} px-3 py-2`}>
+                                                    <td>
+                                                        <span className={`badge badge-pill  px-3 py-2`}>
                                                             {item.phone}
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        <span className={`badge badge-pill ${getStatusBadge(item.order_status)} px-3 py-2`}>
+                                                        <span className={`badge badge-pill  px-3 py-2`}>
                                                             {item.order_status}
                                                         </span>
                                                     </td>
@@ -118,7 +110,7 @@ const PaymentHistory = ({ paymentHistory,orderProductDetails}) => {
                                         </tbody>
                                     </table>
 
-                                    
+
                                 </div>
 
                             </div>

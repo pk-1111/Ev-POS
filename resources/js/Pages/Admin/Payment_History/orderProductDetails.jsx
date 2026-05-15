@@ -3,8 +3,8 @@ import Sidebar from '../Siderbar/Siderbar';
 import Topbar from '../Topbar/Topbar';
 import '/public/Admin/css/sb-admin-2.min.css';
 
-const PaymentHistory = ({ orders }) => {
-    console.log(orders);
+const PaymentHistory = ({ order }) => {
+    console.log(order);
     return (
         <div id="wrapper">
             <Sidebar />
@@ -24,12 +24,12 @@ const PaymentHistory = ({ orders }) => {
 
                         {/* Order Details Grid */}
                         <div className="row">
-                            {orders && orders.length > 0 ? (
-                                orders.map((product, index) => (
+                            {order && order.length > 0 ? (
+                                order.map((product, index) => (
                                     <div className="col-xl-4 col-md-6 mb-4" key={index}>
                                         <div className="card border-0 shadow-sm h-100 overflow-hidden big-image-card">
 
-                                            {/* Product Image - အပေါ်မှာ အပြည့်တင်လိုက်လို့ ပိုကြီးသွားပါပြီ */}
+                                            {/* Product Image */}
                                             <div className="position-relative" style={{ height: '200px', overflow: 'hidden' }}>
                                                 <img
                                                     src={product.product_image ? `/product/${product.product_image}` : '/default-product.png'}
@@ -38,13 +38,13 @@ const PaymentHistory = ({ orders }) => {
                                                     alt={product.product_name}
                                                     onError={(e) => { e.target.src = 'https://via.placeholder.com/300x200?text=No+Image'; }}
                                                 />
-                                                {/* ကုန်ပစ္စည်းအမျိုးအစား သို့မဟုတ် Badge ပြချင်ရင် (Optional) */}
+                                                {/* Product type */}
                                                 <span className="badge badge-primary position-absolute" style={{ top: '10px', left: '10px', zIndex: '1' }}>
                                                     {product.category_name}
                                                 </span>
                                             </div>
 
-                                            {/* Product Info - အောက်မှာ ရှင်းရှင်းလင်းလင်း ပြန်စီထားပါတယ် */}
+                                            {/* Product Info  */}
                                             <div className="card-body py-3 d-flex flex-column">
                                                 <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Available_Stock: {product.available_stock}
@@ -85,7 +85,7 @@ const PaymentHistory = ({ orders }) => {
                                                 <div className="d-flex justify-content-between align-items-center px-2">
                                                     <span className="small font-weight-bold text-muted uppercase">Total:</span>
                                                     <span className="h5 mb-0 font-weight-bold text-primary">
-                                                        {(product.total_amount)} Ks
+                                                        {Number(product.product_price).toLocaleString()} Ks Ks
                                                     </span>
                                                 </div>
                                             </div>
@@ -100,33 +100,38 @@ const PaymentHistory = ({ orders }) => {
                             )}
                         </div>
 
-                        {/* CSS Style - Component ရဲ့ အောက်ခြေမှာ ထည့်ထားပေးပါ */}
-                        <style>{`
-    .big-image-card {
-        transition: all 0.3s ease-in-out;
-        border-radius: 15px;
-    }
-    .big-image-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
-    }
-    .bg-gray-100 { background-color: #f8f9fc; }
-    .text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .h5 { font-size: 1.25rem; }
-`}</style>
 
-                        {/* CSS Style - Component ရဲ့ အောက်ခြေမှာ ထည့်ထားပေးပါ */}
                         <style>{`
-    .item-card {
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        border-radius: 12px;
-    }
-    .item-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-    }
-    .bg-gray-100 { background-color: #f8f9fc; }
-`}</style>
+                                  .big-image-card {
+                                    transition: all 0.3s ease-in-out;
+                                    border-radius: 15px;
+                                 }
+
+                                 .big-image-card:hover {
+                                   transform: translateY(-5px);
+                                   box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
+                                 }
+
+                                 .bg-gray-100 { background-color: #f8f9fc; }
+                                 .text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+                                 .h5 { font-size: 1.25rem; }
+                               `}
+                        </style>
+
+                        {/* CSS Style  */}
+                        <style>{`
+                                   .item-card {
+                                                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+                                                 border-radius: 12px;
+                                             }
+
+                                   .item-card:hover {
+                                                         transform: translateY(-4px);
+                                                         box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+                                                     }
+                                   .bg-gray-100 { background-color: #f8f9fc; }
+                               `}
+                        </style>
                     </div>
                 </div>
             </div>

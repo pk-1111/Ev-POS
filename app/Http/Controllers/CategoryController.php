@@ -9,7 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
-    // category list page
+    //admin category list page
 
     public function  categoryPage(){
 
@@ -20,37 +20,24 @@ class CategoryController extends Controller
      
     }
 
+    // admin create category
+
     public function createCategory(Request $request)
 {
     $request->validate([
         'categoryName' => 'required|string|max:255',
     ]);
 
-    // Data သိမ်းမယ်
+    
     Category::create([
         'title' => $request->categoryName,
     ]);
 
-    // အရေးကြီးဆုံးအပိုင်း - မူလ Page ဆီ ပြန်ပို့လိုက်တာနဲ့ Inertia က Data အသစ်ကို ယူလာပေးပါလိမ့်မယ်
+   
     return back()->with('success', 'Category created successfully!');
 }
 
 
- 
-
-    // create    category
-    // public function createCategory(Request $request){
-    //    $this->checkValidation($request);
-
-    //    Category::create([
-    //         'title' => $request->categoryName
-    //    ]);
-
-    //    Alert::success('Category Create', 'Category Create Successfully!');
-
-
-    //    return back();
-    // }
 
     // update Category Page
 

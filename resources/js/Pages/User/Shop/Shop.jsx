@@ -2,6 +2,7 @@ import Navbar from '../Navbar/Navbar';
 import { Link } from '@inertiajs/react';
 
 const Shop = ({ products = [], auth }) => {
+    console.log(products);
     return (
         <div className="bg-gray-50 min-h-screen antialiased">
             {/* Navbar */}

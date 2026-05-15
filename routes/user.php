@@ -14,19 +14,24 @@ use Inertia\Inertia;
 // Route::get('/home',[HomeController::class,'userHome'])->name('userHome');
 
 
-Route::get('/shop',[ShopController::class,'userShop'])->name('userShop');
 
-Route::get('/learn-more',[ShopController::class,'learnMorePage'])->name('learnMorePage');
+// shop 
 
-Route::get('/location',[ShopController::class,'locationPage'])->name('locationPage');
+    Route::get('/shop',[ShopController::class,'userShop'])->name('userShop');
 
- 
+    Route::get('/learn-more',[ShopController::class,'learnMorePage'])->name('learnMorePage');
 
-Route::get('/product-details/{id}',[ProductController::class,'productDetailsPage'])->name('productDetailsPage');
-
-Route::get('/view-all',[HomeController::class,'viewAllPage'])->name('viewAllPage');
+    Route::get('/location',[ShopController::class,'locationPage'])->name('locationPage');
 
 
+ // product details 
+
+    Route::get('/product-details/{id}',[ProductController::class,'productDetailsPage'])->name('productDetailsPage');
+
+
+// viewAll Page
+
+    Route::get('/view-all',[HomeController::class,'viewAllPage'])->name('viewAllPage');
 
 
  // addToCart
@@ -37,7 +42,8 @@ Route::get('/view-all',[HomeController::class,'viewAllPage'])->name('viewAllPage
 
     Route::post('/cart/store',[CartController::class,'addToCart'])->name('addToCart');
 
-      // cart delete
+ // cart delete
+ 
     Route::delete('cart/delete/{cart_id}',[CartController::class,'cartDelete'])->name('cartDelete');
 
     Route::get('payment',[UserPaymentController::class,'paymentPage'])->name('paymentPage');

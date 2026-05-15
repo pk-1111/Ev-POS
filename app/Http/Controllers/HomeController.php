@@ -10,7 +10,7 @@ use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-    // 
+    // user home direct
 
     public function userHome(){
           $trendingProducts = Product::select('products.*','categories.title as category_name')
@@ -28,6 +28,8 @@ class HomeController extends Controller
               'trendingProducts' =>  $trendingProducts,
           ]);
     }
+
+    // viewAll Page
 
     public function viewAllPage(){
           $products = Product::get();

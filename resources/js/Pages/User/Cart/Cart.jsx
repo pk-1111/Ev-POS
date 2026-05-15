@@ -26,13 +26,13 @@ const Cart = ({ auth, cart }) => {
 
 
   const updateQuantity = (id, amount) => {
-    // လက်ရှိ item ကို ရှာတယ်
+
     const currentItem = items.find(item => item.cart_id === id);
     const newQty = currentItem.qty + amount;
 
-    if (newQty <= 0) return; // ၀ ထက်မငယ်စေရ
+    if (newQty <= 0) return;
 
-    // Database ကို ပို့ပြီး Update လုပ်မယ်
+
     router.post('/cart/update', {
       cart_id: id,
       qty: newQty
@@ -77,7 +77,7 @@ const Cart = ({ auth, cart }) => {
               <div className="price-col">$ {item.price}</div>
               <div className="qty-col">
                 <div className="qty-box">
-                  {/* Function ကို current item ရဲ့ id နဲ့ လှမ်းခေါ်ပါ */}
+
                   <button onClick={() => updateQuantity(item.cart_id, -1)}>-</button>
                   <span>{item.qty}</span>
                   <button onClick={() => updateQuantity(item.cart_id, 1)}>+</button>
@@ -99,7 +99,7 @@ const Cart = ({ auth, cart }) => {
           <div className="summary-section">
             <div className="summary-row">
               <span>SUBTOTAL</span>
-              {/* Recalculate လုပ်ထားတဲ့ grandTotal ကို သုံးပါ */}
+
               <span>${grandTotal}</span>
             </div>
             <p className="tax-info">(ONLY IPHONE, IPAD, MACBOOK & I-WATCH)</p>

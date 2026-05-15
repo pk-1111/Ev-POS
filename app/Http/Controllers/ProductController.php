@@ -13,17 +13,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {   
-
-    //  public function all_ProductsPage(){
-    //    $products = Product::get();
-    //     return Inertia::render('User/Home/Home',[
-    //         'products' => $products,
-    //     ]);
-
-    // }
-
     
-    // direct product create Page
+    // admin direct product create Page
 
     public function createProductPage(){
         $categories = Category::all();
@@ -34,7 +25,7 @@ class ProductController extends Controller
     }
 
 
-     // create product
+     // admin create product
     public function createProduct(Request $request){
     //    dd("Controller inside.");
         // $this->checkProductValidation($request,"create");
@@ -85,7 +76,7 @@ class ProductController extends Controller
 
 
 
-      // direct product list
+      // admin direct product list
 
        public function productListPage(){
 
@@ -100,6 +91,9 @@ class ProductController extends Controller
 
        }
 
+
+       // product view page
+
        public function productViewPage($id){
         
         $productDetails = Product::select('products.id','products.name','products.price','products.description','products.image','products.stock as available_item','categories.title as category_name','products.created_at')
@@ -113,42 +107,7 @@ class ProductController extends Controller
               ]);
         }
 
-      public function productList($amt = 'default' ){
-
-       $products = Product::select('categories.title as category_name','products.id','products.name','products.image','products.price','products.category_id','products.stock','discounts.rate as rate')
-        ->leftJoin('categories','products.category_id','categories.category_id')
-        ->leftJoin('discounts','products.id','discounts.product_id')
-        ->when(request('searchKey'),function($query){
-            $query->whereAny(['products.name','categories.title'] , 'like', '%'.request('searchKey').'%');
-        });
-
-        if($amt != 'default') {
-            $products = $products->where('stock',"<=",3);
-        }
-
-
-        $products = $products->orderBy('products.created_at','desc')->get();
-
-        return view('admin.product.productList',compact('products'));
-      }
-
-
-      //detail product
-
-    public function productDetails($id){
-
-    $productDetails = Product::select('products.id','products.name','products.price','products.description','products.image','products.stock as available_item','categories.title as category_name')
-        ->leftJoin('categories','products.category_id','categories.category_id')
-        ->where('id',$id)
-        ->first();
-
-        return view('admin.product.productDetails',compact('productDetails'));
-    }
-
-
-
-
-    //update page
+    //admin edit product page
 
     public function editProductPage($id){
         $categories = Category::get();
@@ -160,7 +119,7 @@ class ProductController extends Controller
          ]);
     }
 
-    //update product
+    // admin edit product
 
     public function editProduct(Request $request){
         // dd($request->all());
@@ -191,15 +150,10 @@ class ProductController extends Controller
 
         Alert::success('Product Create', 'Product Created Successfully...');
 
-
-
-
                   return back();
-
-
     }
 
-     //delete product
+     //admin delete product 
 
     public function deleteProduct($id){
         Product::where('id',$id)->delete();
@@ -208,18 +162,6 @@ class ProductController extends Controller
 
           return back();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
      // request product data

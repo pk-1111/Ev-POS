@@ -8,7 +8,7 @@ use Inertia\Inertia;
 
 class AdminController extends Controller
 {
-    // 
+    //  admin home Page
 
       public function adminHome(){
           return Inertia::render('Admin/Home/AdminHome');

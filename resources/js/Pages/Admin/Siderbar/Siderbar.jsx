@@ -8,8 +8,7 @@ const Sidebar = () => {
     { name: 'Add Products', icon: 'fa-solid fa-plus', link: '/add-product' },
     { name: 'Product List', icon: 'fa-solid fa-layer-group', link: '/product-list' },
     { name: 'Payment Method', icon: 'fa-solid fa-credit-card', link: '/payment-page' },
-    { name: 'Sale Information', icon: 'fa-solid fa-list', link: '/sales' },
-    { name: 'Payment', icon: 'fa-solid fa-cart-shopping', link: '/payment_history' },
+    { name: 'User Payment Histroy', icon: 'fa-solid fa-cart-shopping', link: '/payment_history' },
     { name: 'Change Password', icon: 'fa-solid fa-lock', link: '/change-password' },
   ];
 

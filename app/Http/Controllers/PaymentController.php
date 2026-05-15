@@ -9,7 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PaymentController extends Controller
 {
-   //  payment page
+   //  admin  payment method page
     public function paymentMethodPage(){
        $payments = Payment::get();
        return Inertia::render('Admin/PaymentMethod/PaymentMethod',
@@ -19,7 +19,7 @@ class PaymentController extends Controller
     }
 
 
-    // paymentcreate
+    // admin payment method create
 
     public function paymentMethodCreate(Request $request){
           // $this->checkAdminPaymentValidation($request);
@@ -39,7 +39,9 @@ class PaymentController extends Controller
 
       return back();
     }
+     
 
+    // delete payment method
 
       public function deletePaymentMethod($id){
         Payment::where('id',$id)->delete();
@@ -48,8 +50,6 @@ class PaymentController extends Controller
 
           return back();
     }
-
-
 
 
 

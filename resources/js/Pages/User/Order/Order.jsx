@@ -3,33 +3,23 @@ import Navbar from '../Navbar/Navbar';
 import { Link } from '@inertiajs/react';
 
 const OrderList = ({ auth, orders = [] }) => {
-    
-    // Status အလိုက် အရောင် Badge သတ်မှတ်ပေးတဲ့ Function
-    const getStatusStyle = (status) => {
-        const styles = {
-            pending: 'bg-orange-100 text-orange-600 border-orange-200',
-            shipped: 'bg-blue-100 text-blue-600 border-blue-200',
-            delivered: 'bg-green-100 text-green-600 border-green-200',
-            cancelled: 'bg-red-100 text-red-600 border-red-200',
-        };
-        return styles[status.toLowerCase()] || 'bg-gray-100 text-gray-600 border-gray-200';
-    };
+
 
     return (
         <div className="min-h-screen bg-[#f8fafc]">
             <Navbar auth={auth} />
-            
+
             {/* Main Content */}
             <main className="max-w-6xl mx-auto pt-28 pb-16 px-6">
-                
+
                 {/* Section Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                     <div className="space-y-1">
                         <h1 className="text-3xl font-black text-gray-900 tracking-tight">Order History</h1>
                         <p className="text-gray-500 font-medium">သင်မှာယူထားသော ပစ္စည်းစာရင်းများကို ဤနေရာတွင် စစ်ဆေးနိုင်ပါသည်။</p>
                     </div>
-                    <Link 
-                        href="/shop" 
+                    <Link
+                        href="/shop"
                         className="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-gray-800 transition active:scale-95 shadow-sm"
                     >
                         Continue Shopping
@@ -49,7 +39,7 @@ const OrderList = ({ auth, orders = [] }) => {
                                     <th className="p-6 text-[11px] font-black text-gray-400 uppercase tracking-[0.1em]">Status</th>
                                 </tr>
                             </thead>
-                            
+
                             <tbody className="divide-y divide-gray-50">
                                 {orders.length > 0 ? (
                                     orders.map((order) => (
@@ -58,10 +48,10 @@ const OrderList = ({ auth, orders = [] }) => {
                                             <td className="p-6">
                                                 <div className="flex items-center gap-5">
                                                     <div className="relative w-16 h-16 bg-gray-100 rounded-2xl overflow-hidden flex-shrink-0 border border-gray-100">
-                                                        <img 
-                                                            src={`/product/${order.image}`} 
-                                                            className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500" 
-                                                            alt="product" 
+                                                        <img
+                                                            src={`/product/${order.image}`}
+                                                            className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500"
+                                                            alt="product"
                                                         />
                                                     </div>
                                                     <div>
@@ -117,8 +107,8 @@ const OrderList = ({ auth, orders = [] }) => {
                                                 <p className="text-gray-400 text-sm font-medium mb-8">
                                                     သင်မှာယူထားသော ပစ္စည်းစာရင်း မရှိသေးပါ။ အရည်အသွေးမြင့် ပစ္စည်းများကို စတင်ဝယ်ယူလိုက်ပါ။
                                                 </p>
-                                                <Link 
-                                                    href="/shop" 
+                                                <Link
+                                                    href="/shop"
                                                     className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100"
                                                 >
                                                     Start Shopping
@@ -131,7 +121,7 @@ const OrderList = ({ auth, orders = [] }) => {
                         </table>
                     </div>
                 </div>
-                
+
                 {/* Footer Note */}
                 <div className="mt-8 text-center">
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cart; // Cart model ကို use လုပ်ဖို့ မမေ့ပါနဲ့
+use App\Models\Cart; 
 use App\Models\Order;
 use App\Models\PaymentHistory;
 use Illuminate\Http\Request;
@@ -12,6 +12,8 @@ use Inertia\Inertia;
 
 class UserOrderController extends Controller
 {   
+  
+    //  order Page
 
     public function orderPage(){
            $orders = Order::where('user_id', Auth::user()->id)->get();
@@ -20,23 +22,26 @@ class UserOrderController extends Controller
         'orders' => $orders
        ]);
     }
-  
+
+
+    // order store 
+
     public function orderStore(Request $request)
     {
-        // ၁။ လက်ရှိ User ရဲ့ Cart ထဲက ပစ္စည်းတွေကို အရင်သွားယူမယ်
+       
         $cartData = Cart::where('user_id', Auth::user()->id)->get();
 
         // dd($cartData->toArray());
 
-        // ၂။ Cart ထဲမှာ ပစ္စည်းရှိမှ အောက်က အလုပ်တွေကို လုပ်မယ်
+       
         if ($cartData->count() > 0) {
             
             foreach ($cartData as $item) {
                 Order::create([
                     'user_id'      => Auth::user()->id,
                     'product_id'   => $item->product_id,
-                    'order_code'   => $request->order_code, // Frontend က ပါလာတဲ့ code
-                    'total_amount' => $item->price * $item->qty, // ပစ္စည်းတစ်ခုချင်းစီရဲ့ total
+                    'order_code'   => $request->order_code, 
+                    'total_amount' => $item->price * $item->qty,
                     'image'        => $item->image,
                     'capacity'     => $item->capacity,
                     'color'        => $item->color,
@@ -68,10 +73,10 @@ class UserOrderController extends Controller
 
           
 
-            // ၃။ အရေးကြီးဆုံးအချက် - Order တင်ပြီးရင် Cart ကို ရှင်းထုတ်ပစ်မယ်
+            // cart delete
             Cart::where('user_id', Auth::user()->id)->delete();
 
-            // ၄။ အားလုံးပြီးရင် Success page သို့မဟုတ် မူရင်း page ကို ပြန်ပို့မယ်
+          
             return redirect()->route('orderPage')->with('success', 'Order placed successfully!');
         }
 

@@ -11,17 +11,17 @@ import moment from 'moment';
 const PaymentMethod = ({ payments }) => {
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        account_number: '', account_name: '', type: '' // input ရဲ့ name နဲ့ တူရပါမယ်
+        account_number: '', account_name: '', type: ''
     });
     const submit = (e) => {
         e.preventDefault();
         console.log(data);
-        post(route('paymentMethodCreate'), { // Controller ဆီပို့မယ့် URL (Route လမ်းကြောင်း)
+        post(route('paymentMethodCreate'), {
             forceFormData: true,
             onSuccess: () => {
                 reset();
                 alert('Success!');
-            } // အောင်မြင်ရင် input field ကို ပြန်ရှင်းတာပါ
+            }
         });
     };
 

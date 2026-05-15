@@ -8,7 +8,7 @@ const OrderCheckoutUI = ({ auth, payments, grandTotal, orderCode }) => {
 
     const [imagePreview, setImagePreview] = useState(null);
 
-    // နဂိုမူလ Logic အတိုင်း လုံးဝမပြောင်းလဲထားပါ
+
     const { data, setData, post, processing, errors } = useForm({
         phone: '',
         payment_type: payments,

@@ -8,7 +8,8 @@ use Inertia\Inertia;
 
 class ShopController extends Controller
 {
-    //
+    // user shop direct
+    
      public function userShop(){
        
          $products = Product::select('categories.title as category_name','products.id','products.name','products.image','products.price','products.category_id','products.stock')
@@ -21,16 +22,13 @@ class ShopController extends Controller
     }
 
 
-
-
-
-
-
-    // 
+    // learn more page
 
     public function learnMorePage(){
        return Inertia::render('User/LearnMore/LearnMore');
     }
+    
+    // location page
 
     public function LocationPage(){
        return Inertia::render('User/Location/Location');

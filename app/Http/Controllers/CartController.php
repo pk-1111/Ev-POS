@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\ActionLog;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -51,14 +49,13 @@ class CartController extends Controller
 
         return redirect()->route('cartShow');
     }
+    
 
+    // cart show 
 
      public function cartShow(){
 
     //  dd($request->all());
-
-
-
 
        $cart = Cart::select('products.id as product_id','carts.id as cart_id','products.image','products.name','products.price','carts.qty','carts.capacity','carts.color')
                       ->leftJoin('products','carts.product_id','products.id')
@@ -81,15 +78,16 @@ class CartController extends Controller
         ]);
     }
 
-    // CartController.php ထဲမှာ ဒီ function ထည့်ပေးပါ
+    // CartUpdate 
 
-public function cartUpdate(Request $request) {
-    Cart::where('id', $request->cart_id)
+    public function cartUpdate(Request $request) {
+
+      Cart::where('id', $request->cart_id)
         ->update([
             'qty' => $request->qty
         ]);
 
-    return back(); // Page ကို refresh ဖြစ်သွားစေပြီး data အသစ်ပြန်ပါလာမယ်
+    return back(); 
 }
 
 
@@ -102,37 +100,5 @@ public function cartUpdate(Request $request) {
 
         return back();
 
-              // activity logs for delete cart
-    //   $this->actionLogAdd( Auth::user()->id ,$cartId, 'cartDelete');
-
-    //        return response()->json([
-    //          'status'  => 'success'
-    //        ],200);
-
-
-
-
     }
-
-
-    public function productList(){
-        $product = Product::get();
-
-        return response()->json([
-            'data' => $product
-        ],200);
-    }
-
-
-    // action log process
-    private function actionLogAdd($user_id,$product_id,$action){
-         // activity logs
-        ActionLog::create([
-            'user_id' => Auth::user()->id ,
-            'product_id' => $product_id ,
-            'action' =>  $action
-        ]);
-
-    }
-
 }
